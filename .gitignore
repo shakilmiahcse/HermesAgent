@@ -9,11 +9,15 @@ workspace/data/*.db
 workspace/data/*.db-shm
 workspace/data/*.db-wal
 workspace/data/*.lock
+workspace/data/*.pid
+workspace/data/gateway.pid
 workspace/data/.hermes_history
 workspace/data/.skills_prompt_snapshot.json
 workspace/data/*_cache.json
 workspace/data/gateway_state.json
 workspace/data/cron/
+workspace/data/cache/
+workspace/data/channel_directory.json
 
 # Ignore logs inside workspace
 workspace/logs/
