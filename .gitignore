@@ -13,6 +13,7 @@ workspace/data/.hermes_history
 workspace/data/.skills_prompt_snapshot.json
 workspace/data/*_cache.json
 workspace/data/gateway_state.json
+workspace/data/cron/
 
 # Ignore logs inside workspace
 workspace/logs/
