@@ -1,0 +1,36 @@
+# Ignore local environment files and credentials inside workspace
+workspace/.env
+workspace/data/.env
+workspace/data/.env.bak*
+workspace/data/auth.json
+
+# Ignore database locks and runtime db files inside workspace
+workspace/data/*.db
+workspace/data/*.db-shm
+workspace/data/*.db-wal
+workspace/data/*.lock
+workspace/data/.hermes_history
+workspace/data/.skills_prompt_snapshot.json
+workspace/data/*_cache.json
+workspace/data/gateway_state.json
+
+# Ignore logs inside workspace
+workspace/logs/
+*.log
+
+# Ignore backups and exports inside workspace
+workspace/backups/
+workspace/exports/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node packages and builds
+node_modules/
+dist/
+
+# Ignore the engine folder (since we will clone the official hermes-agent directly on the server)
+hermes-agent/
+engine/

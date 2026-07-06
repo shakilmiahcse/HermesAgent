@@ -1,0 +1,32 @@
+# Memory management settings for Hermes Agent
+
+memory:
+  # General storage configurations
+  format: "markdown"
+  base_directory: "memory"
+  auto_consolidate: true
+  consolidation_interval_turns: 10
+  character_limit_per_file: 50000
+
+  # Categories mappings
+  categories:
+    business: "memory/business/"
+    marketing: "memory/marketing/"
+    products: "memory/products/"
+    customers: "memory/customers/"
+    competitors: "memory/competitors/"
+    research: "memory/research/"
+    reports: "memory/reports/"
+
+  # Git synchronization
+  git_sync:
+    enabled: true
+    auto_commit: true
+    commit_message_prefix: "[Hermes Memory Sync] Update memories"
+    sync_interval_minutes: 60
+
+  # Hallucination constraints
+  integrity:
+    force_source_of_truth: true
+    source_of_truth_file: "knowledge/source_of_truth.md"
+    strict_mode: true

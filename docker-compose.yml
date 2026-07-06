@@ -1,0 +1,81 @@
+# ==============================================================================
+# Hermes Agent - Unified Production Docker Compose Configuration
+# ==============================================================================
+# This file is optimized for both local testing and production deployment.
+# It uses a dedicated bridge network for secure integration with Apache/n8n/OpenWA.
+
+services:
+  gateway:
+    build:
+      context: ./hermes-agent # Locally: hermes-agent | Server: ./engine
+      dockerfile: ../workspace/Dockerfile
+    image: hermes-agent:latest
+    container_name: hermes-gateway
+    restart: unless-stopped
+    ports:
+      - "8642:8642"   # API Gateway Port
+    env_file:
+      - ./workspace/.env
+    environment:
+      - API_SERVER_HOST=0.0.0.0
+      - API_SERVER_PORT=8642
+      - HERMES_UID=${HERMES_UID:-10000}
+      - HERMES_GID=${HERMES_GID:-10000}
+    volumes:
+      # Data persistence folder (root of Hermes data inside container)
+      - ./workspace/data:/opt/data
+      # Subfolders mounted individually to align with project structure
+      - ./workspace/config:/opt/data/config
+      - ./workspace/logs:/opt/data/logs
+      - ./workspace/memory:/opt/data/memory
+      - ./workspace/skills:/opt/data/skills
+      - ./workspace/knowledge:/opt/data/knowledge
+      - ./workspace/prompts:/opt/data/prompts
+      - ./workspace/reports:/opt/data/reports
+      - ./workspace/workflows:/opt/data/workflows
+      - ./workspace/scripts:/opt/data/scripts
+      - ./workspace/.env:/opt/data/.env
+    networks:
+      - hermes-network
+    command: ["gateway", "run"]
+
+  dashboard:
+    build:
+      context: ./hermes-agent # Locally: hermes-agent | Server: ./engine
+      dockerfile: ../workspace/Dockerfile
+    image: hermes-agent:latest
+    container_name: hermes-dashboard
+    restart: unless-stopped
+    depends_on:
+      - gateway
+    ports:
+      - "9119:9119"   # Dashboard UI Port
+    env_file:
+      - ./workspace/.env
+    environment:
+      - HERMES_DASHBOARD_HOST=0.0.0.0
+      - HERMES_DASHBOARD_PORT=9119
+      - HERMES_UID=${HERMES_UID:-10000}
+      - HERMES_GID=${HERMES_GID:-10000}
+    volumes:
+      # Data persistence folder (root of Hermes data inside container)
+      - ./workspace/data:/opt/data
+      # Subfolders mounted individually to align with project structure
+      - ./workspace/config:/opt/data/config
+      - ./workspace/logs:/opt/data/logs
+      - ./workspace/memory:/opt/data/memory
+      - ./workspace/skills:/opt/data/skills
+      - ./workspace/knowledge:/opt/data/knowledge
+      - ./workspace/prompts:/opt/data/prompts
+      - ./workspace/reports:/opt/data/reports
+      - ./workspace/workflows:/opt/data/workflows
+      - ./workspace/scripts:/opt/data/scripts
+      - ./workspace/.env:/opt/data/.env
+    networks:
+      - hermes-network
+    command: ["dashboard", "--host", "0.0.0.0", "--port", "9119", "--no-open", "--insecure"]
+
+networks:
+  hermes-network:
+    name: hermes-network
+    driver: bridge

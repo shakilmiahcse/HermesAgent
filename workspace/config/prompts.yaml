@@ -1,0 +1,32 @@
+# Prompt pipeline configuration for Hermes
+
+prompts:
+  # General prompt control
+  active_version: "v1" # Target folder: prompts/v1/
+  fallback_version: "v1"
+  allow_experimental: false
+
+  # Prompt mapping by task
+  pipelines:
+    student_pain_scanner: "prompts/{version}/student_pain_scanner.md"
+    content_generator: "prompts/{version}/content_generator.md"
+    competitor_watch: "prompts/{version}/competitor_watch.md"
+    positioning_audit: "prompts/{version}/positioning_audit.md"
+    performance_review: "prompts/{version}/performance_review.md"
+    growth_brief: "prompts/{version}/growth_brief.md"
+    daily_growth_brief: "prompts/{version}/daily_growth_brief.md"
+    daily_lead_intelligence: "prompts/{version}/daily_lead_intelligence.md"
+    weekly_positioning: "prompts/{version}/weekly_positioning.md"
+    weekly_content_review: "prompts/{version}/weekly_content_review.md"
+    social_reply_generator: "prompts/{version}/social_reply_generator.md"
+    lead_followup: "prompts/{version}/lead_followup.md"
+    research_report: "prompts/{version}/research_report.md"
+    trend_detector: "prompts/{version}/trend_detector.md"
+
+  # Variable overrides for template substitution
+  global_variables:
+    brand_name: "Fluento"
+    founder_name: "Nahian Mahbub"
+    primary_language: "English"
+    secondary_language: "Simple Bangla"
+    timezone: "Asia/Dhaka"

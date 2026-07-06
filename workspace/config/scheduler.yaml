@@ -1,0 +1,46 @@
+# Daily, weekly and monthly scheduler configuration for Hermes
+
+schedules:
+  # Daily tasks
+  daily:
+    - task_name: "growth_brief"
+      cron: "0 9 * * *" # Runs daily at 09:00 AM
+      pipeline: ["pain_scan", "competitor_watch", "growth_brief"]
+      output_template: "templates/report/growth_brief.md"
+      destination: "reports/daily/"
+
+    - task_name: "lead_intelligence"
+      cron: "0 20 * * *" # Runs daily at 08:00 PM
+      pipeline: ["daily_lead_intelligence", "social_reply_generator"]
+      output_template: "templates/report/lead_intelligence.md"
+      destination: "reports/daily/"
+
+  # Weekly tasks
+  weekly:
+    - task_name: "weekly_performance"
+      cron: "0 8 * * 1" # Runs every Monday at 08:00 AM
+      pipeline: ["weekly_content_review", "weekly_positioning", "performance_review"]
+      output_template: "templates/report/performance_report.md"
+      destination: "reports/weekly/"
+
+    - task_name: "competitor_audit"
+      cron: "0 18 * * 5" # Runs every Friday at 06:00 PM
+      pipeline: ["competitor_watch", "positioning_audit"]
+      output_template: "templates/report/competitor_report.md"
+      destination: "reports/weekly/"
+
+  # Monthly tasks
+  monthly:
+    - task_name: "market_positioning"
+      cron: "0 9 1 * *" # Runs 1st day of every month at 09:00 AM
+      pipeline: ["research_report", "trend_detector", "positioning_audit"]
+      output_template: "templates/report/positioning_report.md"
+      destination: "reports/monthly/"
+
+settings:
+  timezone: "Asia/Dhaka"
+  retry_on_failure: true
+  max_retries: 2
+  notification:
+    telegram: true
+    email: false

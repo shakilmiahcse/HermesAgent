@@ -1,0 +1,34 @@
+# Logging configuration for Hermes
+
+logging:
+  # General settings
+  level: "info" # debug, info, warn, error
+  format: "json"
+  console_output: true
+
+  # Log destinations mapping to subdirectories
+  outputs:
+    daily:
+      path: "logs/daily/run.log"
+      max_size_mb: 10
+      backup_count: 5
+    error:
+      path: "logs/errors/error.log"
+      level: "error"
+      max_size_mb: 20
+      backup_count: 10
+    scheduler:
+      path: "logs/scheduler/schedule.log"
+      max_size_mb: 10
+      backup_count: 5
+    api:
+      path: "logs/api/calls.log"
+      max_size_mb: 15
+      backup_count: 7
+
+# Custom levels per modules
+modules:
+  hermes_agent: "info"
+  playwright_browser: "warn"
+  youtube_api: "info"
+  facebook_api: "info"

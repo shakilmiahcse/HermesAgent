@@ -1,0 +1,39 @@
+# Models configuration for Hermes LLM mappings
+
+# Default models mapped by task type
+tasks:
+  growth_brief:
+    primary: "anthropic/claude-3-5-sonnet:online"
+    fallback: "openai/gpt-4o"
+    temperature: 0.3
+    max_tokens: 4000
+
+  pain_scanner:
+    primary: "google/gemini-2.5-flash"
+    fallback: "meta-llama/llama-3.3-70b-instruct"
+    temperature: 0.1
+    max_tokens: 1500
+
+  lead_intelligence:
+    primary: "anthropic/claude-3-5-sonnet"
+    fallback: "google/gemini-2.5-pro"
+    temperature: 0.2
+    max_tokens: 2000
+
+  competitor_analysis:
+    primary: "anthropic/claude-3-5-sonnet:online"
+    fallback: "google/gemini-2.5-pro"
+    temperature: 0.2
+    max_tokens: 3000
+
+  reply_generation:
+    primary: "google/gemini-2.5-flash"
+    fallback: "meta-llama/llama-3.3-70b-instruct"
+    temperature: 0.5
+    max_tokens: 800
+
+# Global model definitions
+active_models:
+  reasoning: "anthropic/claude-3-5-sonnet"
+  fast: "google/gemini-2.5-flash"
+  heavy: "anthropic/claude-3-5-sonnet"

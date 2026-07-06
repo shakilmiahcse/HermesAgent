@@ -1,0 +1,38 @@
+# Provider API Gateways configuration for Hermes
+
+providers:
+  openrouter:
+    api_key_env: "OPENROUTER_API_KEY"
+    base_url: "https://openrouter.ai/api/v1"
+    timeout_seconds: 30
+    max_retries: 3
+    headers:
+      "HTTP-Referer": "https://fluento.org"
+      "X-Title": "Fluento Hermes Growth Agent"
+
+  openai:
+    api_key_env: "OPENAI_API_KEY"
+    base_url: "https://api.openai.com/v1"
+    timeout_seconds: 30
+    max_retries: 3
+
+  anthropic:
+    api_key_env: "ANTHROPIC_API_KEY"
+    base_url: "https://api.anthropic.com/v1"
+    timeout_seconds: 30
+    max_retries: 3
+
+  gemini:
+    api_key_env: "GEMINI_API_KEY"
+    base_url: "https://generativelanguage.googleapis.com/v1beta"
+    timeout_seconds: 30
+    max_retries: 3
+
+# Failover priority when primary gateway fails
+failover:
+  enabled: true
+  strategy: "round_robin"
+  order:
+    - openrouter
+    - openai
+    - gemini

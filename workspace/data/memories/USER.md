@@ -1,0 +1,1 @@
+Fluento's brand voice is professional, friendly, and uses simple Bangla.
