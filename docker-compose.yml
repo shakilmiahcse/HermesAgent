@@ -21,6 +21,7 @@ services:
       - API_SERVER_PORT=8642
       - HERMES_UID=${HERMES_UID:-10000}
       - HERMES_GID=${HERMES_GID:-10000}
+      - HERMES_GATEWAY_NO_SUPERVISE=1
     volumes:
       # Data persistence folder (root of Hermes data inside container)
       - ./workspace/data:/opt/data
